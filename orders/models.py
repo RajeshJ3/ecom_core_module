@@ -16,9 +16,7 @@ class OrderItem(EmbeddedJsonModel, BaseModel):
     This model holds items for a order
     '''
 
-    from core.products.models import Product
-
-    product: Product
+    product: str
     quantity: PositiveInt
 
 
