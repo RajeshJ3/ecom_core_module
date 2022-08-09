@@ -1,45 +1,35 @@
 # redis
 from redis_om import (
-    JsonModel,
-    EmbeddedJsonModel
+    Migrator,
+    JsonModel
 )
 
 # formats, etc
 from typing import List, Optional
-from pydantic import PositiveInt, PositiveFloat, Field
+from pydantic import PositiveFloat, Field
 
 # custom modules
-from core.base_models import BaseModel
+from base_models import BaseModel
 
-class ProductImage(EmbeddedJsonModel, BaseModel):
-    '''
-    This model holds images for a product
-    '''
-    alt: Optional[str] = Field(max_length=32)
-    url: str
-
-    # visiblity
-    primary: bool
-    is_public: bool = Field(default=True)
-    is_active: bool = Field(default=True)
 
 class Product(JsonModel, BaseModel):
     '''
-    This model represents a single product and it's embedded images
+    This model represents a single product
     '''
     # product basic info
-    name: str
+    name: str = Field(index=True)
     description: Optional[str]
-    images: List[ProductImage]
+    image_url: str
 
     # amount
-    mrp: Optional[PositiveFloat]
-    price: PositiveFloat
+    price: PositiveFloat = Field(index=True)
 
     # metadata
-    stock: PositiveInt
-    tags: List[str]
+    tags: List[str] = Field(index=True)
 
     # visiblity
-    is_public: bool = Field(default=True)
-    is_active: bool = Field(default=True)
+    is_public: bool = Field(default=True, index=True)
+    is_active: bool = Field(default=True, index=True)
+
+
+Migrator().run()

@@ -1,4 +1,4 @@
-from core.db import redis_db
+from db import redis_db
 
 class BaseModel:
 
