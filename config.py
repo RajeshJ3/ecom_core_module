@@ -1,2 +1,0 @@
-REDIS_DB_HOST = 'redis'
-REDIS_DB_PORT = 6379
