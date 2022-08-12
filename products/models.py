@@ -6,7 +6,9 @@ from redis_om import (
 
 # formats, etc
 from typing import List, Optional
-from pydantic import PositiveFloat, Field
+from pydantic import PositiveFloat
+
+from redis_om import Field
 
 # custom modules
 from base_models import BaseModel

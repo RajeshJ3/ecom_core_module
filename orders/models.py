@@ -7,7 +7,9 @@ from redis_om import (
 
 # formats, etc
 from typing import List, Optional
-from pydantic import PositiveInt, Field
+from pydantic import PositiveInt
+
+from redis_om import Field
 
 # custom modules
 from base_models import BaseModel
