@@ -29,9 +29,7 @@ class Product(JsonModel, BaseModel):
     # metadata
     tags: List[str] = Field(index=True)
 
-    # visiblity
-    is_public: bool = Field(default=True, index=True)
-    is_active: bool = Field(default=True, index=True)
-
-
-Migrator().run()
+def run_products_migrator():
+    print("Migrating products", end=" ")
+    Migrator().run()
+    print("[DONE]")

@@ -54,13 +54,20 @@ class Order(JsonModel, BaseModel):
     '''
     This model represents a single order and it's embedded items
     '''
-    # details
+    # authentication
+    token: str = Field(index=True)
+
+    # order details
     order_items: List[OrderItem]
+    status: str = Field(index=True, default="init") # init, pending, completed, cancelled, declined, refunded
+
+    # customer
     customer: Optional[Customer]
+
+    # other
     invoice_url: Optional[str]
 
-    # visiblity
-    is_active: bool = Field(default=True, index=True)
-
-
-Migrator().run()
+def run_orders_migrator():
+    print("Migrating orders", end=" ")
+    Migrator().run()
+    print("[DONE]")
