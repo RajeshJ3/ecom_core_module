@@ -6,7 +6,7 @@ from redis_om import (
 
 # formats, etc
 from typing import List, Optional
-from pydantic import PositiveFloat
+from pydantic import PositiveFloat, PositiveInt
 
 from redis_om import Field
 
@@ -28,6 +28,9 @@ class Product(JsonModel, BaseModel):
 
     # metadata
     tags: List[str] = Field(index=True)
+
+    # analytics
+    downloads: PositiveInt = Field(default=1)
 
 def run_products_migrator():
     print("Migrating products", end=" ")
