@@ -21,6 +21,9 @@ class Product(JsonModel, BaseModel):
     # product basic info
     name: str = Field(index=True)
     description: Optional[str]
+
+    # media
+    thumbnail_url: str
     image_url: str
 
     # amount
